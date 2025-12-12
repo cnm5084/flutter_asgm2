@@ -22,7 +22,7 @@ class _DiaryScreenState extends State<DiaryScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('New Diary Entry'),
+        title: const Text('Add New Diary'),
         backgroundColor: const Color.fromARGB(255, 188, 161, 231),
       ),
       body: SingleChildScrollView(
@@ -33,7 +33,7 @@ class _DiaryScreenState extends State<DiaryScreen> {
               children: [
                 SizedBox(height: 20),
                 Text(
-                  "Write something new !\nToday is ${DateTime.now().toLocal().toString().split(' ')[0]}",
+                  "Write something new !\n\nToday is ${DateTime.now().toLocal().toString().split(' ')[0]}",
                   style: TextStyle(fontSize: 18),
                   textAlign: TextAlign.center,
                 ),
@@ -44,23 +44,18 @@ class _DiaryScreenState extends State<DiaryScreen> {
                   decoration: BoxDecoration(
                     border: Border.all(
                       color: Colors.black, // border color
-                      width: 2.0, // border thickness
+                      width: 1.5, // border thickness
                     ),
                     borderRadius: BorderRadius.circular(8.0),
-                    color: const Color.fromARGB(
-                      215,
-                      218,
-                      213,
-                      246,
-                    ), // rounded corners
+                    color: const Color.fromARGB(215,218,213,246,), // rounded corners
                   ),
                   child: Center(
                     child: imageFile != null
                         ? Image.file(imageFile!, fit: BoxFit.cover)
                         : Icon(
-                            Icons.camera_alt,
-                            size: 80,
-                            color: const Color.fromARGB(196, 81, 79, 89),
+                            Icons.add_a_photo_rounded,
+                            size: 50,
+                            color: const Color.fromARGB(148, 81, 79, 89),
                           ),
                   ),
                 ),
