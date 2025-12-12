@@ -210,7 +210,11 @@ class _ListScreenState extends State<ListScreen> {
     );
     TextEditingController notesController = TextEditingController(
       text: entry.notes,
-    ); // read-only
+    );
+    TextEditingController dateController = TextEditingController(
+      text: entry.date,
+    );
+    // read-only
 
     showDialog(
       context: context,
@@ -278,17 +282,18 @@ class _ListScreenState extends State<ListScreen> {
                     const SizedBox(height: 15),
                     // DATE (READ ONLY)
                     TextField(
-                      readOnly: true,
-                      decoration: InputDecoration(
-                        labelText: "Date",
-                        filled: true,
-                        fillColor: Color.fromARGB(255, 233, 231, 241),
-                        prefixIcon: const Icon(Icons.calendar_today),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(14),
-                        ),
+                    controller: dateController,
+                    readOnly: true,
+                    decoration: InputDecoration(
+                      labelText: "Date",
+                      filled: true,
+                      fillColor: Colors.grey[200],
+                      prefixIcon: const Icon(Icons.calendar_today),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(14),
                       ),
                     ),
+                  ),
                     const SizedBox(height: 15),
                     // IMAGE PREVIEW (if available)
                     if (entry.imagePath != null)
