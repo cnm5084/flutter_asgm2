@@ -35,12 +35,12 @@ class _ListScreenState extends State<ListScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Diary Screen'),
-        backgroundColor: const Color.fromARGB(255, 188, 161, 231),
+        backgroundColor: const Color.fromARGB(255, 160, 138, 217),
       ),
       body: diaries.isEmpty
           ? const Center(
               child: Text(
-                'No any diary entries yet.\nAdd one now!',
+                'It\'s empty here.\nAdd a new one!',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 20,
@@ -114,6 +114,7 @@ class _ListScreenState extends State<ListScreen> {
           );
           _loadDiaryEntries(); // refresh after returning
         },
+        backgroundColor: const Color.fromARGB(255, 211, 198, 245),
         child: const Icon(Icons.add),
       ),
     );
@@ -127,8 +128,17 @@ class _ListScreenState extends State<ListScreen> {
         return AlertDialog(
           title: Row(
             children: [
-              Expanded(child: Text(entry.title)),
-              SizedBox(width: 180),
+              SizedBox(
+                width: 185, // set the fixed width you want
+                child: Text(
+                  entry.title,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
+                  overflow: TextOverflow.clip, // optional: truncate long text
+                ),
+              ),
               IconButton(
                 onPressed: () => editEntryDialog(entry),
                 icon: Icon(
@@ -145,25 +155,34 @@ class _ListScreenState extends State<ListScreen> {
           ),
           content: SingleChildScrollView(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 entry.imagePath != null
                     ? Container(
                         margin: const EdgeInsets.only(bottom: 10),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey,style: BorderStyle.solid, width: 1.5),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
                         child: Image.file(
                           File(entry.imagePath!),
-                          height: 180,
+                          height: 190,
+                          width: 270,
                           fit: BoxFit.cover,
                         ),
                       )
                     : const SizedBox(),
                 const SizedBox(height: 10),
-                Text(
-                  "Date: ${entry.date}",
-                  style: const TextStyle(fontWeight: FontWeight.bold),
+                Row(
+                  children: [
+                    Text(
+                      "Date: ${entry.date}",
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ],
                 ),
-                const SizedBox(height: 10),
-                Text(entry.notes),
+                SizedBox(height: 5),
+                Row(children: [Text(entry.notes)]),
               ],
             ),
           ),
