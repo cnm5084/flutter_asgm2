@@ -181,7 +181,13 @@ class _ListScreenState extends State<ListScreen> {
                     ),
                   ],
                 ),
-                SizedBox(height: 5),
+                SizedBox(height: 10),
+                Row(children: [
+                  Text(
+                    "Notes:",
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ]),
                 Row(children: [Text(entry.notes)]),
               ],
             ),
