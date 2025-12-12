@@ -23,7 +23,7 @@ class _DiaryScreenState extends State<DiaryScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Add New Diary'),
-        backgroundColor: const Color.fromARGB(255, 188, 161, 231),
+        backgroundColor: const Color.fromARGB(255, 160, 138, 217),
       ),
       body: SingleChildScrollView(
         child: Center(
@@ -39,7 +39,7 @@ class _DiaryScreenState extends State<DiaryScreen> {
                 ),
                 SizedBox(height: 20),
                 Container(
-                  height: 220,
+                  height: 240,
                   width: 380,
                   decoration: BoxDecoration(
                     border: Border.all(
@@ -51,7 +51,9 @@ class _DiaryScreenState extends State<DiaryScreen> {
                   ),
                   child: Center(
                     child: imageFile != null
-                        ? Image.file(imageFile!, fit: BoxFit.cover)
+                        ? Image.file(imageFile!, fit: BoxFit.cover,  // Cover keeps aspect ratio while filling
+            width: double.infinity,
+            height: double.infinity,)
                         : Icon(
                             Icons.add_a_photo_rounded,
                             size: 50,
@@ -61,8 +63,13 @@ class _DiaryScreenState extends State<DiaryScreen> {
                 ),
                 SizedBox(height: 10),
 
-                ElevatedButton(onPressed: pickImage, child: Text("Pick Image")),
-
+                ElevatedButton(onPressed: pickImage, 
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(255, 232, 230, 245),
+                ), child: Text('Pick Image',
+                style: TextStyle(fontSize: 15,
+                fontWeight: FontWeight.bold,
+                color: const Color.fromARGB(255, 59, 58, 116)),)),
                 SizedBox(height: 20),
                 SizedBox(
                   height: 80,
@@ -74,7 +81,7 @@ class _DiaryScreenState extends State<DiaryScreen> {
                       border: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.black, width: 2.0),
                       ),
-                      errorStyle: TextStyle(color: Colors.red, fontSize: 16),
+                      errorStyle: TextStyle(color: const Color.fromARGB(255, 240, 37, 23), fontSize: 14),
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -86,6 +93,7 @@ class _DiaryScreenState extends State<DiaryScreen> {
                     maxLines: 2,
                   ),
                 ),
+                SizedBox(height: 10),
                 SizedBox(
                   height: 150,
                   width: 380,
@@ -94,11 +102,11 @@ class _DiaryScreenState extends State<DiaryScreen> {
                     decoration: InputDecoration(
                       labelText: 'Diary Text',
                       border: OutlineInputBorder(),
-                      errorStyle: TextStyle(color: Colors.red, fontSize: 16),
+                      errorStyle: TextStyle(color: const Color.fromARGB(255, 240, 37, 23), fontSize: 14),
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Notes cannot be empty';
+                        return 'Diary text cannot be empty';
                       }
                       return null;
                     },
@@ -106,13 +114,11 @@ class _DiaryScreenState extends State<DiaryScreen> {
                     maxLines: 10,
                   ),
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: 25),
                 ElevatedButton(onPressed: saveDiary,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromARGB(255, 214, 207, 234),
-                  padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 12),
-                  textStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ), child: Text('Save Diary')),
+                  backgroundColor: const Color.fromARGB(255, 202, 197, 242),
+                ), child: Text('Save Diary',style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold,color: const Color.fromARGB(255, 59, 58, 116)),)),
               ],
             ),
           ),
