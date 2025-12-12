@@ -42,6 +42,10 @@ class _ListScreenState extends State<ListScreen> {
               child: Text(
                 'No any diary entries yet.\nAdd one now!',
                 textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Color.fromARGB(207, 109, 93, 135),
+                ),
               ),
             )
           : Column(
@@ -135,11 +139,7 @@ class _ListScreenState extends State<ListScreen> {
               ),
               IconButton(
                 onPressed: () => deleteDialog(entry.id!),
-                icon: Icon(
-                  Icons.delete,
-                  size: 20,
-                  color: Colors.redAccent,
-                ),
+                icon: Icon(Icons.delete, size: 20, color: Colors.redAccent),
               ),
             ],
           ),
@@ -150,12 +150,12 @@ class _ListScreenState extends State<ListScreen> {
                 entry.imagePath != null
                     ? Container(
                         margin: const EdgeInsets.only(bottom: 10),
-                      child: Image.file(
+                        child: Image.file(
                           File(entry.imagePath!),
                           height: 180,
                           fit: BoxFit.cover,
                         ),
-                    )
+                      )
                     : const SizedBox(),
                 const SizedBox(height: 10),
                 Text(
