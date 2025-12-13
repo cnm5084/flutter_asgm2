@@ -46,14 +46,23 @@ class _DiaryScreenState extends State<DiaryScreen> {
                       color: Colors.black, // border color
                       width: 1.5, // border thickness
                     ),
-                    borderRadius: BorderRadius.circular(8.0),
-                    color: const Color.fromARGB(215,218,213,246,), // rounded corners
+                    borderRadius: BorderRadius.circular(5.0),
+                    color: const Color.fromARGB(
+                      215,
+                      218,
+                      213,
+                      246,
+                    ), // rounded corners
                   ),
                   child: Center(
                     child: imageFile != null
-                        ? Image.file(imageFile!, fit: BoxFit.cover,  // Cover keeps aspect ratio while filling
-            width: double.infinity,
-            height: double.infinity,)
+                        ? Image.file(
+                            imageFile!,
+                            fit: BoxFit
+                                .cover, // Cover keeps aspect ratio while filling
+                            width: double.infinity,
+                            height: double.infinity,
+                          )
                         : Icon(
                             Icons.add_a_photo_rounded,
                             size: 50,
@@ -63,13 +72,20 @@ class _DiaryScreenState extends State<DiaryScreen> {
                 ),
                 SizedBox(height: 10),
 
-                ElevatedButton(onPressed: pickImage, 
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromARGB(255, 232, 230, 245),
-                ), child: Text('Pick Image',
-                style: TextStyle(fontSize: 15,
-                fontWeight: FontWeight.bold,
-                color: const Color.fromARGB(255, 59, 58, 116)),)),
+                ElevatedButton(
+                  onPressed: pickImage,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color.fromARGB(255, 232, 230, 245),
+                  ),
+                  child: Text(
+                    'Pick Image',
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                      color: const Color.fromARGB(255, 59, 58, 116),
+                    ),
+                  ),
+                ),
                 SizedBox(height: 20),
                 SizedBox(
                   height: 80,
@@ -81,7 +97,10 @@ class _DiaryScreenState extends State<DiaryScreen> {
                       border: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.black, width: 2.0),
                       ),
-                      errorStyle: TextStyle(color: const Color.fromARGB(255, 240, 37, 23), fontSize: 14),
+                      errorStyle: TextStyle(
+                        color: const Color.fromARGB(255, 240, 37, 23),
+                        fontSize: 14,
+                      ),
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -102,7 +121,10 @@ class _DiaryScreenState extends State<DiaryScreen> {
                     decoration: InputDecoration(
                       labelText: 'Diary Text',
                       border: OutlineInputBorder(),
-                      errorStyle: TextStyle(color: const Color.fromARGB(255, 240, 37, 23), fontSize: 14),
+                      errorStyle: TextStyle(
+                        color: const Color.fromARGB(255, 240, 37, 23),
+                        fontSize: 14,
+                      ),
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -115,10 +137,20 @@ class _DiaryScreenState extends State<DiaryScreen> {
                   ),
                 ),
                 SizedBox(height: 25),
-                ElevatedButton(onPressed: saveDiary,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromARGB(255, 202, 197, 242),
-                ), child: Text('Save Diary',style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold,color: const Color.fromARGB(255, 59, 58, 116)),)),
+                ElevatedButton(
+                  onPressed: saveDiary,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color.fromARGB(255, 202, 197, 242),
+                  ),
+                  child: Text(
+                    'Save Diary',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: const Color.fromARGB(255, 59, 58, 116),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
@@ -153,9 +185,9 @@ class _DiaryScreenState extends State<DiaryScreen> {
         imagePath: imageFile?.path,
       );
       await dbHelper.insertDiary(newEntry);
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Diary Entry Saved')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Diary Entry Saved')));
       // ignore: use_build_context_synchronously
       Navigator.pop(context); //Close dialog
     }
